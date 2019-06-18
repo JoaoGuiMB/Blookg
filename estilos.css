@@ -1,0 +1,219 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+/*
+Cabeçalho
+*/
+header{
+    display: flex;
+    background-color: #161616;
+    height: 90px;
+   
+       
+}
+header a{
+    color: white;
+    font-family: "Josefin Sans",Arial, Helvetica, sans-serif;
+}
+
+header a:hover{
+    color: red;
+}
+header div{
+    display: flex;
+    margin: 0 auto;
+}
+header h1{    
+   
+    font-size: 3em;
+    text-align: center;
+    margin-top: 20px;
+    align-self: center;
+}
+
+/*
+Area do artigo
+*/
+.artigo-container{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.imagem1-artigo,.imagem2-artigo{
+    margin: 20px 10px;
+    width: 95%;
+    height: 100%;
+}
+.titulo-artigo{
+    color: #161616;
+    font-family: Roboto,Arial, Helvetica, sans-serif;
+    font-size: 2.2em;
+    margin-left: 10px;
+}
+.citacao-artigo{
+    font-family: Roboto,Arial, Helvetica, sans-serif;
+    color: #2e2e2e;
+    font-size: 1.5em;
+    margin-left: 15px;
+}
+
+.texto1-artigo,.texto2-artigo{
+    font-size: 1.12em;
+    font-family: Roboto,Arial, Helvetica, sans-serif;
+    letter-spacing: 0.05em;
+    margin-left: 10px;
+
+}
+.data-artigo,.autor-artigo{
+    font-family: Roboto,Arial, Helvetica, sans-serif;
+    margin: 20px;
+    font-size: 1em;
+}
+
+
+
+/*
+Botão de Like 
+*/
+#notification {
+    font-family: "Josefin Sans",Arial, Helvetica, sans-serif;
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    padding: 15px 26px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+    margin: 30px 50px 30px 20px;
+    
+    
+  }
+  
+  #notification:hover {
+    background: red;
+  }
+  
+  #notification .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    
+  }
+/*
+botao e barra comentário
+*/
+#fazer-comentario{
+    margin-top: 20px;
+    margin-bottom: 70px;
+    display: flex;
+    justify-content: space-around;
+}
+#barra-coment{
+    width: 300px;
+    height: 100px;
+    border: solid #161616 2px;
+}
+#botao-coment{
+    background-color: #555;
+    color: white;
+    font-family: "Josefin sans",Arial, Helvetica, sans-serif;
+    width: 100px;
+    height: 50px;
+    border: none ;
+    font-size: 1em;
+}
+#botao-coment:hover{
+    cursor: pointer;
+    background-color: red;
+}
+#titulo-coment{
+    font-family: "Josefin sans",Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    color: #161616;
+}
+#barra-nome{
+    height: 30px;
+    border: solid #161616 2px;
+
+}
+.coments{
+    border: #161616 solid 2px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+.comentario{
+    font-family: Roboto,Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+   
+}
+.autor-comentario{
+    font-size: 1em;
+    font-family: Roboto,Arial, Helvetica, sans-serif;
+}
+
+
+@media(min-width: 600px){
+    .imagem1-artigo,.imagem2-artigo{
+        width: 55%;
+        height: 60%;
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        
+    }
+    .titulo-artigo{
+        margin-bottom: 25px;
+    }
+
+    .autor-comentario,.comentario{
+        text-align: center;
+    }
+
+}
+
+
+
+
+@media (min-width: 1300px){
+    .artigo-container{
+        display: block;
+    }
+    .imagem1-artigo,.imagem2-artigo{
+        width: 20%;
+        height: 50%;
+        margin: 10px 650px;
+
+    }
+    .titulo-artigo{
+       
+    }
+    #notification{
+        margin-top: 100px;
+        margin-left: 70px;
+    }
+    #barra-coment{
+        margin-top: 0;
+    }
+    #fazer-comentario{
+        margin-top: -100px;
+        margin-bottom: 70px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+
+}
+
+

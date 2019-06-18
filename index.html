@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="imagem/png" href="book.png">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blookg</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Righteous|Roboto:400,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    
+    
+</head>
+
+<body onload= exibePosts()>
+    <header>
+        <a href="https://github.com/JoaoGuiMB/Blookg"><img src="Github.png" alt="Git"></a>
+        <div id=logo-container>
+            <h1><a href="index.html">Blookg</h1></a>
+            
+        </div>
+        <button id="botao-criar" onclick= esconder()>Criar Post</button>
+
+              
+
+    </header>
+    <div id="container-total">
+        <div id="main-content">
+            <div class="frase-efeito">
+                <h1 class="frase">"My children will have computers,yes,but before they will have books.Without Books,without read,our children
+                    will not be able to write - not even their own history"</h1>
+                <h3>Bill Gates</h3>
+                <h1 class="frase"">“Books allow you to fully explore a topic and immerse yourself in a deeper way than most media today.”</h1>
+                <h3>Mark Zuckerberg</h3>
+            </div>
+            <h2>Posts</h2>
+            <div id="box-artigos">
+
+
+
+
+
+
+            </div>
+            <div id="local-noticia">
+
+
+
+
+            </div>
+        </div>
+        <div id="inserir">
+            <form id="form-postar" >
+            
+            <input type="file" id="getimage">
+            <input type="text" placeholder="Coloque o titulo" id="campo-title">
+            <input type="text" placeholder="Coloque o texto" id="campo-text">
+            <input type="text" placeholder="Coloque a data" id="campo-data">
+            <input type="text" placeholder="Autor" id="campo-autor">
+            <input type="button" id="botao-enviar" value="Enviar">
+            
+            </form>
+        </div>
+    </div>
+    <footer>
+        <span>© 2019 - Blookg. All Rights Reserved. Designed & Developed by João Guiherme </span>
+    </footer>
+
+    <script src="conteudo.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="likes.js"></script>
+    <script>
+        var imageDataURI ='';
+        
+        
+        function exibePosts(){
+            var artigos = '';
+            
+            for (i = db.artigos.length; i > 0.; i--) {
+                let post=db.artigos[i-1];
+                artigos += `<div class="box-content">
+                    <a onClick="passaParam(${post.id})" href="paginaArtigo.html"><img  src="${post.imagem}" class="imagem-conteudo"></a>
+                    <a href="paginaArtigo.html" onClick="passaParam(${post.id})"><h2 class="titulo-conteudo">${post.titulo}</h2></a><br>
+                     <p class="data-conteudo">${post.data}</p><br>
+                     <p  class="autor-conteudo">por ${post.autor}</p>
+            
+            
+            </div>`
+            y=localStorage.getItem('x')
+            if(y>1){
+                x=0
+                localStorage.setItem('x',0)
+            }
+
+
+
+
+
+
+        }
+            
+            
+        
+
+
+        document.getElementById('box-artigos').innerHTML = artigos;
+
+
+
+    }
+        
+                
+            $("#botao-enviar").click(function(){
+                let campoImagem = imageDataURI; 
+                let campoTitulo = $("#campo-title").val();
+                let campoTexto = $("#campo-text").val();
+                let campoData = $("#campo-data").val();
+                let campoAutor =$("#campo-autor").val();
+                let post = {imagem: campoImagem,
+                            titulo: campoTitulo,
+                            texto: campoTexto,
+                            autor: campoAutor,
+                            data: campoData,                
+                }
+                
+                criarPost(post);
+                
+                document.getElementById("inserir").style.display="none";
+                document.getElementById("main-content").style.display ="inline";
+                exibePosts();
+
+            })
+            
+
+            
+        
+        
+
+     function esconder(){
+         document.getElementById("main-content").style.display = "none";
+         document.getElementById("inserir").style.display = "block";
+     }
+                
+    
+    
+     function imageHandler(e1) {
+            // var store = document.getElementById('imagem-conteudo');
+            // store.innerHTML = '<img src="' + e1.target.result + '">';
+            imageDataURI = e1.target.result;
+
+        /*
+            var jsonstore = document.getElementById ('jsonstore');
+            jsonstore.innerHTML = `{ "img": "${e2.target.result}" }`;
+            */
+        }
+        
+
+        function loadimage(e1) {
+            var filename = e1.target.files[0];
+            var fr = new FileReader();
+            fr.onload = imageHandler;
+            fr.readAsDataURL(filename);
+        }    
+
+        $("#getimage").change(loadimage);
+        
+        function passaParam(id){
+            localStorage.setItem('idpost', id);
+            window.location.href = ""
+
+        }
+
+        
+
+
+
+    </script>
+    
+
+</body>
+
+</html>

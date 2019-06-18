@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="imagem/png" href="book.png">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blookg</title>
+    <script src="conteudo.js"></script>
+    <script src="likes.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Righteous|Roboto:400,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body onload=colocarconte()>
+    <header>
+        <div>
+            <a href="index.html">
+                <h1>Blookg</h1>
+            </a>
+        </div>
+
+    </header>
+    <div id="artigo">
+
+
+
+    </div>
+    <button id="notification" onclick=darLike()>
+        Curtir
+        < </button> <div id="fazer-comentario">
+
+
+
+            <input type="text" placeholder="Digite o seu nome" id="barra-nome">
+            <input type="text" placeholder="Faça um comentário" id="barra-coment">
+            <button id="botao-coment">Comentar</button>
+
+
+            </div>
+            <h2 id="titulo-coment">Comentários: </h2>
+
+            <div id="sessao-comentarios">
+
+
+
+
+            </div>
+
+
+            <script>
+                var saida = '';
+                var idpost = localStorage.getItem("idpost");
+                var qntdLikes = 'Curtir';
+                var postarComent = '';
+                y=localStorage.getItem('nlikes');
+                if(!y){
+                localStorage.setItem('nlikes',0)
+            }
+
+
+
+
+                function colocarconte() {
+
+                    for (i = 0; i < db.artigos.length; i++) {
+
+                        if (idpost == db.artigos[i].id) {
+                            saida += `<div class="artigo-container">
+                <img src="${db.artigos[i].imagem}" class="imagem1-artigo">
+                <h1 class="titulo-artigo">${db.artigos[i].titulo}</h1>
+                
+                <div class="texto1-artigo">${db.artigos[i].conteudo.texto1}}</div>
+                <h6 class="data-artigo">${db.artigos[i].data}<h6>
+                <h6 class="autor-artigo">${db.artigos[i].autor}<h6>           
+            </div>`
+            y=localStorage.getItem('nlikes')
+            if(y==0){
+              
+                            qntdLikes += `
+            <span class="badge">${dblikes.artigos[i].likes}</span>`
+            }
+            else{
+                
+                qntdLikes += `
+            <span class="badge">${y}</span>`
+
+            }
+                
+
+                    
+                            postarComent += `
+            <div class="coments">
+                <p class="comentario">${dbcoment.artigos[i].textoComentario}</p><br>
+                <p class="autor-comentario">por ${dbcoment.artigos[i].autorComentario}</p>
+                
+            </div>
+            
+            `
+            
+            
+        
+
+
+                        }
+
+                        document.getElementById('artigo').innerHTML = saida;
+
+                        document.getElementById('notification').innerHTML = qntdLikes;
+
+                        document.getElementById('sessao-comentarios').innerHTML = postarComent;
+
+                    }
+
+
+                }
+
+                function darLike() {
+                    /*x=localStorage.getItem("idpost")
+                    let novoLike = dblikes.artigos[x-1].likes
+                    let gostei ={
+                        likes: novoLike
+                    }
+                    Gostar(gostei)
+
+                    */
+                   y=localStorage.getItem("nlikes")
+                   
+                    x=localStorage.getItem("idpost")        
+                    
+                    qntdLikes += `
+                <span class="badge">${Gostar(y)}</span>`        
+                   y=localStorage.getItem('nlikes')  
+                   localStorage.setItem('nlikes',y)
+                    
+                   
+                    
+                
+                    document.getElementById('notification').innerHTML = qntdLikes;
+                    
+                }
+                  
+
+
+                document.getElementById('botao-coment').addEventListener('click', function () {
+
+
+                    salvarComentario(document.getElementById('barra-nome').value, document.getElementById('barra-coment').value)
+
+
+                })
+                salvarComentario(document.getElementById('barra-nome').value, document.getElementById('barra-coment').value)
+
+                var comentario = '';
+                function salvarComentario(c, a) {
+                    
+                    let novoComent = {
+                            coment: c,
+                            autorComent: a
+                    }
+
+                    criarComentario(novoComent);                    
+                    
+                   for(i=4;i<dbcoment.artigos.length;i++){ 
+                    comentario += `
+                <div class="coments">
+                <p class="comentario">${dbcoment.artigos[i].textoComentario}</p><br>
+                <p class="autor-comentario">por ${dbcoment.artigos[i].autorComentario}</p>
+                
+                </div>`
+            }
+            
+                document.getElementById('sessao-comentarios').innerHTML = comentario;
+                    
+                }
+
+
+
+            </script>
+</body>
+
+</html>
